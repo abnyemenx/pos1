@@ -34,10 +34,8 @@ jobs:
           pip install --upgrade "buildozer" "cython<3.0"
 
       - name: Build with Buildozer
-        env:
-          ANDROID_HOME: ${{ env.ANDROID_SDK_ROOT }}
-          PATH: ${{ env.ANDROID_SDK_ROOT }}/tools:${{ env.ANDROID_SDK_ROOT }}/tools/bin:${{ env.ANDROID_SDK_ROOT }}/platform-tools:${{ env.ANDROID_SDK_ROOT }}/build-tools/34.0.0:${{ env.PATH }}
         run: |
+          export PATH="$PATH:$ANDROID_HOME/platform-tools:$ANDROID_HOME/build-tools/34.0.0"
           buildozer -v android debug
 
       - name: Upload APK
